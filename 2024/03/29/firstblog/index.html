@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | 银蓮花_</title>
+  <title>LeetCode 380. O(1) 时间插入、删除和获取随机元素 | 银蓮花_</title>
 
   
 
@@ -99,18 +99,31 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">LeetCode 380. O(1) 时间插入、删除和获取随机元素</h1>
           <h2 class="title-sub-wrap">
             <strong>John Doe</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-03-29T05:56:28.682Z" itemprop="datePublished">2024-03-29</time>
+            <time  class="article-date" datetime="2024-03-29T15:25:37.000Z" itemprop="datePublished">2024-03-29</time>
           </h2>
+          
+            <h2 class="last-time">
+              <span>最后更新于</span>
+              <time  class="article-updated" datetime="2024-03-29T16:02:26.137Z" itemprop="dateUpdated">2024-03-30</time>
+            </h2>
           
           
           <ul class="wrap-list dark">
   
+    <li><a href="/categories/note/">📒 note</a></li>
+  
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/algorithm/">🏷️ algorithm</a></li>
+  
+    <li><a href="/tags/normal/">🏷️ normal</a></li>
+  
+    <li><a href="/tags/java/">🏷️ java</a></li>
   
 </ul>
         </div>
@@ -134,40 +147,48 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+        <h1 id="380-O-1-时间插入、删除和获取随机元素"><a href="#380-O-1-时间插入、删除和获取随机元素" class="headerlink" title="380. O(1) 时间插入、删除和获取随机元素"></a>380. O(1) 时间插入、删除和获取随机元素</h1><h2 id="实现RandomizedSet-类："><a href="#实现RandomizedSet-类：" class="headerlink" title="实现RandomizedSet 类："></a>实现RandomizedSet 类：</h2><ul>
+<li><code>RandomizedSet()</code> 初始化 RandomizedSet 对象</li>
+<li><code>bool insert(int val)</code> 当元素 val 不存在时，向集合中插入该项，并返回 true ；否则，返回 false 。</li>
+<li><code>bool remove(int val)</code> 当元素 val 存在时，从集合中移除该项，并返回 true ；否则，返回 false 。</li>
+<li><code>int getRandom()</code> 随机返回现有集合中的一项（测试用例保证调用此方法时集合中至少存在一个元素）。每个元素应该有 相同的概率 被返回。</li>
+</ul>
+<blockquote>
+<p>你必须实现类的所有函数，并满足每个函数的 平均 时间复杂度为 O(1) 。</p>
+</blockquote>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例:"></a>示例:</h2><ul>
+<li>输入</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&quot;RandomizedSet&quot;</span>, <span class="string">&quot;insert&quot;</span>, <span class="string">&quot;remove&quot;</span>, <span class="string">&quot;insert&quot;</span>, <span class="string">&quot;getRandom&quot;</span>, <span class="string">&quot;remove&quot;</span>, <span class="string">&quot;insert&quot;</span>, <span class="string">&quot;getRandom&quot;</span>]</span><br><span class="line">[[], [1], [2], [2], [], [1], [2], []]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[null, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">true</span>, 2, <span class="literal">true</span>, <span class="literal">false</span>, 2]</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<hr>
+<br/>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+<h2 id="题解-哈希表"><a href="#题解-哈希表" class="headerlink" title="题解:哈希表"></a>题解:哈希表</h2>
       </section>
 
       
       
         <nav class="article-nav">
           
+          
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
     <div class="card-text">
       
-        <a href="/2024/03/29/firstblog/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">LeetCode 380. O(1) 时间插入、删除和获取随机元素</h2>
+        <a href="/2024/03/29/hello-world/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">Hello World</h2>
         </a>
       
-      <div class="card-text--row">Newer</div>
+      <div class="card-text--row">Older</div>
     </div>
   </article>
 </div>
-          
           
         </nav>
       
