@@ -22,7 +22,7 @@
 
   
 
-  <title>Hello World | 银蓮花_</title>
+  <title>mathjax | 银蓮花_</title>
 
   
 
@@ -99,18 +99,22 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">Hello World</h1>
+          <h1 class="title-wrap">mathjax</h1>
           <h2 class="title-sub-wrap">
             <strong>Anemone</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2024-03-29T05:56:28.682Z" itemprop="datePublished">2024-03-29</time>
+            <time  class="article-date" datetime="2024-03-30T11:52:55.000Z" itemprop="datePublished">2024-03-30</time>
           </h2>
           
           
           <ul class="wrap-list dark">
   
+    <li><a href="/categories/log/">📒 log</a></li>
+  
 </ul>
           <ul class="wrap-list dark">
+  
+    <li><a href="/tags/mathjax/">🏷️ mathjax</a></li>
   
 </ul>
         </div>
@@ -134,25 +138,19 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="Hexo数学公式渲染失败"><a href="#Hexo数学公式渲染失败" class="headerlink" title="Hexo数学公式渲染失败"></a>Hexo数学公式渲染失败</h2><p>使用hexo渲染出的页面无法正确显示行内公式和行间公式。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法:"></a>解决办法:</h3><p>在_config.yml配置文件中添加下列内容:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># <span class="title class_">Math</span> <span class="title class_">Equations</span> <span class="title class_">Render</span> <span class="title class_">Support</span></span><br><span class="line"><span class="attr">math</span>:</span><br><span class="line">  <span class="attr">enable</span>: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  # <span class="title class_">Default</span>(<span class="literal">true</span>) will load mathjax/katex script on demand</span><br><span class="line">  # <span class="title class_">That</span> is it only render those page who has <span class="string">&#x27;mathjax: true&#x27;</span> <span class="keyword">in</span> <span class="title class_">Front</span> <span class="title class_">Matter</span>.</span><br><span class="line">  # <span class="title class_">If</span> you set it to <span class="literal">false</span>, it will load mathjax/katex srcipt <span class="variable constant_">EVERY</span> <span class="variable constant_">PAGE</span>.</span><br><span class="line">  <span class="attr">per_page</span>: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">engine</span>: mathjax</span><br></pre></td></tr></table></figure>
+<p>其中per_page选项虽然我打开了，但是还是不能每篇文章自动渲染公式,故需要在每篇博客的front-matter中添加下列内容:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mathjax</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>然后就能正确渲染行间公式了，比如 $$ logn $$效果如下:<br>$$ logn $$<br>但是行内公式渲染依然存在问题，比如$ logn $:<br><br/><br>$logn$<br><br/><br><br/><br><br/><br>如遇到hexo下mathjax公式转义的问题可参考:<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000007261752">Hexo下mathjax的转义问题</a></p>
 
       </section>
 
       
       
         <nav class="article-nav">
+          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
@@ -163,11 +161,10 @@
           <h2 class="card-text--title text-ellipsis">LeetCode 380. O(1) 时间插入、删除和获取随机元素</h2>
         </a>
       
-      <div class="card-text--row">Newer</div>
+      <div class="card-text--row">Older</div>
     </div>
   </article>
 </div>
-          
           
         </nav>
       
