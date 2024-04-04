@@ -165,10 +165,42 @@
 <hr>
 <h2 id="题解-KMP算法"><a href="#题解-KMP算法" class="headerlink" title="题解 KMP算法"></a>题解 KMP算法</h2><p>算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next[i]的定义如下:<strong>对于给定的长度为m的字符串needle，next[i](0&lt;&#x3D;i&lt;m)表示needle[0,i]子串中，真前缀与真后缀相等的最长长度。</strong></p>
 <br>
-<div style="text-align: center;height:300px" >
+<div style="text-align: center;height:200px" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp1.jpg" alt="" />
 </div>
 <br>
+
+<p>下面是一个简单的例子,该字符串 “XXYXXYabc” 的子串 “XXYXXY”的前缀数为3，因为前缀XXY&#x3D;后缀XXY，长度为3.</p>
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp2.jpg" alt="" />
+</div>
+<br>
+
+<p>在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack[该次匹配起点+1]处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1&#x3D;str2，</p>
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp3.jpg" alt="" />
+</div>
+<br>
+且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3=S4，根据先前str1=str2，可以得到在str1中，S1=S2。所以，S1=S2=S3=S4。
+
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp4.jpg" alt="" />
+</div>
+<br>
+所以 S2=S3 ，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀/后缀的长度，也就是next中对应的值。
+
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp5.jpg" alt="" />
+</div>
+<br>
+
+<p>在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O(1)，一共进行m次，故时间复杂度为:</p>
+<p>$$ O(m) $$</p>
+
       </section>
 
       
