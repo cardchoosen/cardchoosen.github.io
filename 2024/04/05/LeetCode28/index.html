@@ -165,63 +165,56 @@
 <hr>
 <h2 id="题解-KMP算法"><a href="#题解-KMP算法" class="headerlink" title="题解 KMP算法"></a>题解 KMP算法</h2><p>算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next[i]的定义如下:<strong>对于给定的长度为m的字符串needle，next[i](0&lt;&#x3D;i&lt;m)表示needle[0,i]子串中，真前缀与真后缀相等的最长长度。</strong></p>
 <br>
-<div style="text-align: center;height:200px" >
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp1.jpg" alt="" />
 </div>
 <br>
 
-<p>下面是一个简单的例子,该字符串 “XXYXXYabc” 的子串 “XXYXXY”的前缀数为3，因为前缀XXY&#x3D;后缀XXY，长度为3.</p>
-<br>
-<div style="text-align: center;height:200px" >
+<p>下面是一个简单的例子,该字符串 “XXYXXYabc” 的子串 “XXYXXY”的前缀数为3，因为前缀XXY&#x3D;后缀XXY，长度为3.<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp2.jpg" alt="" />
 </div>
 <br>
 
-<p>在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack[该次匹配起点+1]处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1&#x3D;str2，</p>
-<br>
-<div style="text-align: center;height:200px" >
+<p>在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack[该次匹配起点+1]处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1&#x3D;str2，<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp3.jpg" alt="" />
 </div>
 <br>
-且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3=S4，根据先前str1=str2，可以得到S1=S2=S3=S4。
 
-<br>
-<div style="text-align: center;height:200px" >
+<p>且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3&#x3D;S4，根据先前str1&#x3D;str2，可以得到S1&#x3D;S2&#x3D;S3&#x3D;S4。<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp4.jpg" alt="" />
 </div>
 <br>
-所以 S2=S3 ，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀/后缀的长度，也就是next中对应的值。
 
-<br>
-<div style="text-align: center;height:200px" >
+<p>所以 S2&#x3D;S3 ，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀&#x2F;后缀的长度，也就是next中对应的值。<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp5.jpg" alt="" />
 </div>
 <br>
-
-<p>我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1~S2之间出现的呢？下面给出证明过程。反证法：假设S1~S2间有个k位置是正确答案。</p>
 <br>
-<div style="text-align: center;height:200px" >
+
+<p>我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1~S2之间出现的呢？下面给出证明过程。反证法：假设S1~S2间有个k位置是正确答案。<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp6.jpg" alt="" />
 </div>
 <br>
 
-<p>那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。</p>
-<br>
-<div style="text-align: center;height:200px" >
+<p>那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp7.jpg" alt="" />
 </div>
 <br>
 
-<p>又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。</p>
-<br>
-<div style="text-align: center;height:200px" >
+<p>又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp8.jpg" alt="" />
 </div>
 <br>
 
-<p>结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。</p>
-<br>
-<div style="text-align: center;height:200px" >
+<p>结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。<br><br></p>
+<div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp9.jpg" alt="" />
 </div>
 <br>
