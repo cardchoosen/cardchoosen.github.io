@@ -183,7 +183,7 @@
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp3.jpg" alt="" />
 </div>
 <br>
-且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3=S4，根据先前str1=str2，可以得到在str1中，S1=S2。所以，S1=S2=S3=S4。
+且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3=S4，根据先前str1=str2，可以得到S1=S2=S3=S4。
 
 <br>
 <div style="text-align: center;height:200px" >
@@ -197,6 +197,36 @@
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp5.jpg" alt="" />
 </div>
 <br>
+
+<p>我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1<del>S2之间出现的呢？下面给出证明过程。反证法：假设S1</del>S2间有个k位置是正确答案。</p>
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp6.jpg" alt="" />
+</div>
+<br>
+
+<p>那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。</p>
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp7.jpg" alt="" />
+</div>
+<br>
+
+<p>又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。</p>
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp8.jpg" alt="" />
+</div>
+<br>
+
+<p>结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。</p>
+<br>
+<div style="text-align: center;height:200px" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp9.jpg" alt="" />
+</div>
+<br>
+
+
 
 <p>在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O(1)，一共进行m次，故时间复杂度为:</p>
 <p>$$ O(m) $$</p>
