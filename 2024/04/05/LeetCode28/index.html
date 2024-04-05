@@ -162,58 +162,58 @@
 <li>输入<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">haystack = <span class="hljs-string">&quot;leetcode&quot;</span>, needle = <span class="hljs-string">&quot;leeto&quot;</span><br></code></pre></td></tr></table></figure></li>
 <li>输出<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">-1<br></code></pre></td></tr></table></figure></li>
 </ul>
-<hr>
-<h2 id="题解-KMP算法"><a href="#题解-KMP算法" class="headerlink" title="题解 KMP算法"></a>题解 KMP算法</h2><p>算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next[i]的定义如下:<strong>对于给定的长度为m的字符串needle，next[i](0&lt;&#x3D;i&lt;m)表示needle[0,i]子串中，真前缀与真后缀相等的最长长度。</strong></p>
 <br>
+
+<h1 id="题解-KMP算法"><a href="#题解-KMP算法" class="headerlink" title="题解 KMP算法"></a>题解 KMP算法</h1><h2 id="算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next-i-的定义如下-对于给定的长度为m的字符串needle，next-i-0"><a href="#算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next-i-的定义如下-对于给定的长度为m的字符串needle，next-i-0" class="headerlink" title="算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next[i]的定义如下:对于给定的长度为m的字符串needle，next[i](0&lt;&#x3D;i&lt;m)表示needle[0,i]子串中，真前缀与真后缀相等的最长长度。"></a>算法的核心思想是利用字符串needle的前缀函数，来加速遍历给定字符串haystack的过程。该前缀函数next[i]的定义如下:<strong>对于给定的长度为m的字符串needle，next[i](0&lt;&#x3D;i&lt;m)表示needle[0,i]子串中，真前缀与真后缀相等的最长长度。</strong></h2><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp1.jpg" alt="" />
 </div>
 <br>
 
-<p>下面是一个简单的例子,该字符串 “XXYXXYabc” 的子串 “XXYXXY”的前缀数为3，因为前缀XXY&#x3D;后缀XXY，长度为3.<br><br></p>
+<h3 id="下面是一个简单的例子-该字符串-“XXYXXYabc”-的子串-“XXYXXY”的前缀数为3，因为前缀XXY-后缀XXY，长度为3"><a href="#下面是一个简单的例子-该字符串-“XXYXXYabc”-的子串-“XXYXXY”的前缀数为3，因为前缀XXY-后缀XXY，长度为3" class="headerlink" title="下面是一个简单的例子,该字符串 “XXYXXYabc” 的子串 “XXYXXY”的前缀数为3，因为前缀XXY&#x3D;后缀XXY，长度为3."></a>下面是一个简单的例子,该字符串 “XXYXXYabc” 的子串 “XXYXXY”的前缀数为3，因为前缀XXY&#x3D;后缀XXY，长度为3.</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp2.jpg" alt="" />
 </div>
 <br>
 
-<p>在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack[该次匹配起点+1]处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1&#x3D;str2，<br><br></p>
+<h3 id="在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack-该次匹配起点-1-处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1-str2，"><a href="#在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack-该次匹配起点-1-处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1-str2，" class="headerlink" title="在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack[该次匹配起点+1]处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1&#x3D;str2，"></a>在拥有了这个前缀数组的帮助下，我们可以在进行字符串比较时进行加速，加速过程如下：如下图所示，当前匹配到下标index处，发现index处字符不相同，在常规暴力匹配方式下，发现字符匹配失败后，需要回到haystack[该次匹配起点+1]处继续检索。但在拥有前缀数组next的帮助下，我们并不需要改变在haystack中index的位置，首先由于先前的遍历，已知子串str1&#x3D;str2，</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp3.jpg" alt="" />
 </div>
 <br>
 
-<p>且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3&#x3D;S4，根据先前str1&#x3D;str2，可以得到S1&#x3D;S2&#x3D;S3&#x3D;S4。<br><br></p>
+<h3 id="且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3-S4，根据先前str1-str2，可以得到S1-S2-S3-S4。"><a href="#且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3-S4，根据先前str1-str2，可以得到S1-S2-S3-S4。" class="headerlink" title="且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3&#x3D;S4，根据先前str1&#x3D;str2，可以得到S1&#x3D;S2&#x3D;S3&#x3D;S4。"></a>且通过next，可以获取最长长度的相等的真前缀和真后缀，可以得到在needle的子串str2中，又有S3&#x3D;S4，根据先前str1&#x3D;str2，可以得到S1&#x3D;S2&#x3D;S3&#x3D;S4。</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp4.jpg" alt="" />
 </div>
 <br>
 
-<p>所以 S2&#x3D;S3 ，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀&#x2F;后缀的长度，也就是next中对应的值。<br><br></p>
+<h3 id="所以-S2-S3-，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀-后缀的长度，也就是next中对应的值。"><a href="#所以-S2-S3-，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀-后缀的长度，也就是next中对应的值。" class="headerlink" title="所以 S2&#x3D;S3 ，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀&#x2F;后缀的长度，也就是next中对应的值。"></a>所以 S2&#x3D;S3 ，在不经意间已经完成了需要遍历匹配的S3的部分，那么我们完全没必要回退haystack中的index，只需要回退needle的index，到橙色部分的字符处，将其与当前字符进行比较，继续推进。这里回退到的位置，就是前缀&#x2F;后缀的长度，也就是next中对应的值。</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp5.jpg" alt="" />
 </div>
 <br>
 <br>
 
-<p>我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1~S2之间出现的呢？下面给出证明过程。反证法：假设S1~S2间有个k位置是正确答案。<br><br></p>
+<h3 id="我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1-S2之间出现的呢？下面给出证明过程。反证法：假设S1-S2间有个k位置是正确答案。"><a href="#我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1-S2之间出现的呢？下面给出证明过程。反证法：假设S1-S2间有个k位置是正确答案。" class="headerlink" title="我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1~S2之间出现的呢？下面给出证明过程。反证法：假设S1~S2间有个k位置是正确答案。"></a>我们保证了已经遍历过了S3部分，但我们又是如何保证，匹配的起点不会在S1~S2之间出现的呢？下面给出证明过程。反证法：假设S1~S2间有个k位置是正确答案。</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp6.jpg" alt="" />
 </div>
 <br>
 
-<p>那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。<br><br></p>
+<h3 id="那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。"><a href="#那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。" class="headerlink" title="那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。"></a>那说明haystack中k位置开始到当前位置整段，即紫色部分，与needle中紫色部分相同。</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp7.jpg" alt="" />
 </div>
 <br>
 
-<p>又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。<br><br></p>
+<h3 id="又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。"><a href="#又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。" class="headerlink" title="又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。"></a>又因为先前的遍历确保了上下完全对映相等，又有下面的2处紫色部分相等。</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp8.jpg" alt="" />
 </div>
 <br>
 
-<p>结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。<br><br></p>
+<h3 id="结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。"><a href="#结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。" class="headerlink" title="结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。"></a>结果很明显了，这会导致needle中出现紫色前缀和紫色后缀相等，且其长度比next中给定的前后缀长度更长，这显然违背了next中“长度最长”的定义，出现矛盾，说明k位置并不存在，论证完毕。</h3><br>
 <div style="text-align: center" >
     <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp9.jpg" alt="" />
 </div>
@@ -221,8 +221,23 @@
 
 
 
-<p>在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O(1)，一共进行m次，故时间复杂度为:</p>
-<p>$$ O(m) $$</p>
+<h3 id="在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O-1-，我们仅需遍历2个字符串，故时间复杂度为"><a href="#在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O-1-，我们仅需遍历2个字符串，故时间复杂度为" class="headerlink" title="在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O(1)，我们仅需遍历2个字符串，故时间复杂度为:"></a>在这种加速下，haystack的index永远不会回退，只会前进，而每一轮匹配仅有比较和查询next数组的操作，复杂度O(1)，我们仅需遍历2个字符串，故时间复杂度为:</h3><p>$$ O(m+n) $$</p>
+<br>
+
+<h2 id="如何求前缀函数next-下面给出手写过程及证明："><a href="#如何求前缀函数next-下面给出手写过程及证明：" class="headerlink" title="如何求前缀函数next,下面给出手写过程及证明："></a>如何求前缀函数next,下面给出手写过程及证明：</h2><br>
+<div style="text-align: center" >
+    <img src="https://nanz9253.obs.ap-southeast-1.myhuaweicloud.com/kmp10.jpg" alt="" />
+</div>
+
+<br>
+
+<hr>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">strStr</span><span class="hljs-params">(String haystack, String needle)</span> &#123;<br>        <span class="hljs-comment">// n、m字符串长度</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> haystack.length(), m = needle.length();<br>        <span class="hljs-comment">//边界情况</span><br>        <span class="hljs-keyword">if</span> (m == <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-comment">//求解next数组</span><br>        <span class="hljs-type">int</span>[] next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m];<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>, j = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;<br>            <span class="hljs-keyword">while</span> (j &gt; <span class="hljs-number">0</span> &amp;&amp; needle.charAt(i) != needle.charAt(j)) &#123;<br>                j = next[j - <span class="hljs-number">1</span>];<br>            &#125;<br>            <span class="hljs-keyword">if</span> (needle.charAt(i) == needle.charAt(j)) &#123;<br>                j++;<br>            &#125;<br>            next[i] = j;<br>        &#125;<br>        <span class="hljs-comment">//KMP</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">while</span> (j &gt; <span class="hljs-number">0</span> &amp;&amp; haystack.charAt(i) != needle.charAt(j)) &#123;<br>                j = next[j - <span class="hljs-number">1</span>];<br>            &#125;<br>            <span class="hljs-keyword">if</span> (haystack.charAt(i) == needle.charAt(j)) &#123;<br>                j++;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (j == m) &#123;<br>                <span class="hljs-keyword">return</span> i - m + <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><ul>
+<li>时间复杂度:<br>$$ O(m+n) $$</li>
+<li>空间复杂度<br>$$ O(m) $$</li>
+</ul>
 
       </section>
 
